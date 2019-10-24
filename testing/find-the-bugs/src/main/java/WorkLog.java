@@ -30,6 +30,7 @@ public final class WorkLog {
 
         ZonedDateTime stop = ZonedDateTime.now();
 
+        /*
         int hours = 0;
         if (start.toLocalDate().equals(stop.toLocalDate())) {
             // Easy case, it's the same day
@@ -40,6 +41,8 @@ public final class WorkLog {
             hours += stop.getDayOfYear() - start.getDayOfYear();
             hours += stop.getHour();
         }
+        */
+        int hours = (int) start.until(stop, ChronoUnit.HOURS);
 
         hoursWorked.merge(person, hours, Integer::sum);
         workStart.remove(person);

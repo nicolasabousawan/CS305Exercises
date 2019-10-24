@@ -43,7 +43,8 @@ public final class App {
         }
 
         switch (discount) {
-            case LARGE:
+            case LARGE: //this code is never reached as this is Large AND isFrequent is False
+                        //caught by the error abaove
                 return originalPrice / 100 * 70;
             case SMALL:
                 return originalPrice / 100 * 90;

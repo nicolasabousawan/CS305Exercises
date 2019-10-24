@@ -22,5 +22,23 @@ public class AppTest {
             1.5666989036012806
         );
         assertEquals(expected, normalized);
+/*
+        ADD MORE TEST CASES IN THESE FORMATS
+
+        List<Double> normalized2 = App.compute();
+        List<Double> expected2 = Arrays.asList(
+                -1.5666989036012806,
+                -1.2185435916898848,
+                -0.8703882797784892,
+                -0.5222329678670935,
+                -0.17407765595569785,
+                0.17407765595569785,
+                0.5222329678670935,
+                0.8703882797784892,
+                1.2185435916898848,
+                1.5666989036012806
+        );
+        assertEquals(expected2, normalized2);
+ */
     }
 }

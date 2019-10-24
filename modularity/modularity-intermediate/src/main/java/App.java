@@ -1,3 +1,12 @@
+public class App {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount(BankAccount.CurrencyType.EURO, 9001);
+        account.add(BankAccount.CurrencyType.DOLLAR, 100);
+        account.remove(BankAccount.CurrencyType.POUND, 10);
+        System.out.println("Balance: " + account.getAmount());
+    }
+}
+
 class BankAccount {
     public enum CurrencyType { DOLLAR, EURO, POUND };
 
@@ -9,7 +18,7 @@ class BankAccount {
     private CurrencyType currencyType;
     private double amount;
 
-    public boolean add(CurrencyType addedType, double addedAmount) {
+    public double convert(CurrencyType addedType,double addedAmount){
         double inCurrency = 0;
         if(currencyType == addedType) {
             inCurrency = addedAmount;
@@ -32,37 +41,16 @@ class BankAccount {
         else if(currencyType == CurrencyType.POUND && addedType == CurrencyType.EURO) {
             inCurrency = 0.88 * addedAmount;
         }
-        amount += inCurrency;
+        return inCurrency;
+    }
+
+    public boolean add(CurrencyType addedType, double addedAmount) {
+        amount += convert(addedType,addedAmount);
         return true;
     }
 
     public boolean remove(CurrencyType removedType, double removedAmount) {
-        double inCurrency = 0;
-        if(currencyType == removedType) {
-            inCurrency = removedAmount;
-        }
-        else if(currencyType == CurrencyType.DOLLAR && removedType == CurrencyType.EURO) {
-            inCurrency = 1.15 * removedAmount;
-        }
-        else if(currencyType == CurrencyType.DOLLAR && removedType == CurrencyType.POUND) {
-            inCurrency = 1.31 * removedAmount;
-        }
-        else if(currencyType == CurrencyType.EURO && removedType == CurrencyType.DOLLAR) {
-            inCurrency = 0.87 * removedAmount;
-        }
-        else if(currencyType == CurrencyType.EURO && removedType == CurrencyType.POUND) {
-            inCurrency = 1.14 * removedAmount;
-        }
-        else if(currencyType == CurrencyType.POUND && removedType == CurrencyType.DOLLAR) {
-            inCurrency = 0.76 * removedAmount;
-        }
-        else if(currencyType == CurrencyType.POUND && removedType == CurrencyType.EURO) {
-            inCurrency = 0.88 * removedAmount;
-        }
-        if(inCurrency > amount) {
-            return false;
-        }
-        amount -= inCurrency;
+        amount -= convert(removedType,removedAmount);
         return true;
     }
 
@@ -75,11 +63,4 @@ class BankAccount {
     }
 }
 
-public class App {
-    public static void main(String[] args) {
-        BankAccount account = new BankAccount(BankAccount.CurrencyType.EURO, 9001);
-        account.add(BankAccount.CurrencyType.DOLLAR, 100);
-        account.remove(BankAccount.CurrencyType.POUND, 10);
-        System.out.println("Balance: " + account.getAmount());
-    }
-}
+

@@ -11,7 +11,7 @@ public class Goolge {
   public static Optional <Result> search(String[] keywords) {
     Iterator<String> iterator = Internet.find(keywords);
     if (iterator.hasNext()) {
-      Result object = new Result(iterator)
+      Result object = new Result(iterator);
       Optional <Result> value = Optional.of(object); 
       return value;
     }

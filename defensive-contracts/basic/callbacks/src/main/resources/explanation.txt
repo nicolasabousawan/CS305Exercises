@@ -1,0 +1,19 @@
+How the system works:
+
+JokeStore pulls data from a file and stores it into a Joke Object
+JokeService will request a joke from Jokestore
+    Sometimes it will run into an issue and fail
+JokeRepo calls on the service to grab the joke (level of abstraction so you dont have access to the store system)
+    The joke repo wants to grab the response from the service but it does not want the joke repo to exceute it right away.
+    By storing it into a callback object, the call back will evaluate the response and execute a series of code depending on
+    if it is an error or not.
+    You can handle the errors at a later time since when the error is thrown it can be stored in call back but it will not
+    run until you call the "onError" method
+
+For example:
+    I can code my onError method to store my error in another variable and hold off.
+    From there I can grab my error at a later time (maybe after all the code is executed) and
+    say something about the error
+    Same thing with on success- maybe I do not need the value right away and can use the onSuccess method to store the value
+    from there I can call it at a later time
+
