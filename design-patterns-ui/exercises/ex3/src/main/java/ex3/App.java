@@ -6,11 +6,23 @@ package ex3;
 public class App {
 
     public static void main(String[] args) {
+        ComputerFactory Factory = null;
+        String deviceToBeBuilt;
+
+        if(deviceToBeBuilt == "Server"){
+            Factory = new ServerFactory("16 GB", "1 TB", "2.9 GHz");
+        }else{
+            Factory = new PCFactory("2 GB", "500 GB", "2.4 GHz");
+        }
+        Computer device = Factory.createComputer();
+        /*
         // A PC with 2 GB RAM, 500 GB HDD, 2.4HZ CPU
         Computer pc = new PC("2", "500", "2.4");// Your implementaion
         // A Server with 16GB RAM, 1 TB HDD, 2.9GHZ GPU
         Computer server = new Server("16", "1", "2.9");// Your implementation
         System.out.println("PC Config::" + pc);
         System.out.println("Server Config::" + server);
+         */
     }
+
 }
