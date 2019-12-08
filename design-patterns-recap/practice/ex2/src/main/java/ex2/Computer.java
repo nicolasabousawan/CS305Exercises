@@ -1,6 +1,6 @@
 package ex2;
 
-class Computer {
+class Computer extends ComputerBuilder {
     private final String name;
     private final int dram;
     private final int storage;
